@@ -22,5 +22,7 @@ class TongLao:
         else:
             print('draw...')
 tonglao = TongLao(1000, 20)
-print(tonglao.see_people('WYZ'))
-print(tonglao.fight_zms(900, 20))
+tonglao.see_people('WYZ')
+tonglao.fight_zms(900, 20)
+# print(tonglao.see_people('WYZ'))
+# print(tonglao.fight_zms(900, 20))
