@@ -6,11 +6,20 @@
 # @Software: PyCharm
 from selenium.webdriver.common.by import By
 
-from test_appium.page.basepage import BasePage
+from homework_webtest_po.page.base_page import BasePage
+from homework_webtest_po.page.contact_page import ContactPage
 
 
 class AddMemPage(BasePage):
-    def add_mem(self):
-        self.driver.find_element(By.ID, "username").send_keys("李灵")
-        self.driver.find_element(By.ID, "memberAdd_acctid").send_keys("1111")
-        self.driver.find_element(By.ID, "memberAdd_phone").send_keys("187111222333")
+
+    def add_mem(self, name, id, phone):
+        _username = (By.ID, "username")
+        _userid = (By.ID, "memberAdd_acctid")
+        _userphone = (By.ID, "memberAdd_phone")
+        _save = (By.CSS_SELECTOR, ".js_btn_save")
+        self.find(*_username).send_keys(name)
+        self.find(*_userid).send_keys(id)
+        self.find(*_userphone).send_keys(phone)
+        self.find(*_save).click()
+        return ContactPage(self.driver)
+

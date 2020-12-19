@@ -6,3 +6,5 @@
 # @File : import_contact_page.py
 # @Software: PyCharm
 class ImportContactPage:
+    def import_contact(self):
+        pass
