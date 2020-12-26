@@ -6,21 +6,24 @@
 # @Software: PyCharm
 import requests
 
+from interface_po_test.api_page.base_api import BaseApi
+from interface_po_test.api_page.utils import Utils
 
-class MemManage:
 
+class MemManage(BaseApi):
+    def __init__(self):
+        _corpsecret = "K3sTAAdCZK7N7UJChT6KILEbUTe889UOmy7lpcxfeLY"
+        utils = Utils()
+        self.token = utils.get_token(_corpsecret)
     def create_mem(self):
-        url = "https://qyapi.weixin.qq.com/cgi-bin/user/create?access_token=ACCESS_TOKEN"
-        data = {"userid":"112", "name":"张三"}
-        requests.post(url, data)
+        data = {"url": "https://qyapi.weixin.qq.com/cgi-bin/user/create",
+                "method": "post",
+                "params": {"access_token": self.token},
+                "json": {"userid": "112", "name": "张三","department": [1], "mobile": "+86 13800000000"}}
+        return self.send_api(data)
 
     def get_mem(self):
-        url = "https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN&userid=USERID"
-        data = {"userid": "112", "name": "张三"}
-        requests.get(url, data)
-
-    def update_mem(self):
-        pass
-
-    def delete_mem(self):
-        pass
+        data = {"url": "https://qyapi.weixin.qq.com/cgi-bin/user/get",
+                "method": "get",
+                "params": {"access_token": self.token, "userid": 112}}
+        return self.send_api(data)
